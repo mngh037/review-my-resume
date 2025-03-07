@@ -1,0 +1,35 @@
+Review the following resume and job description.
+Provide a percentage match score and a breakdown of how the match score is calculated based on:
+    - Skills Match (X%)
+    - Experience Alignment (X%)
+    - Keyword Matching (X%)
+    - Clarity & Structure (X%)
+    - Industry Relevance (X%)
+
+Provide top key strengths that are relevant to the role in the job description and could be expanded on in a cover letter.
+
+Summarize the five most important skills as indicated in the job description provided. Score the skills as presented on the resume on a scale out of 5, with 1 being no such skill possessed, 5 being skill is sufficiently and well-presented in the resume. Provide a short constructive feedback or comment. Present the answer in json format with keys being "skill", "score", and "comment".
+
+Summarize some key strengths shown in the resume that are relevant to the role and sought after by the company that posted this job description. Strengths may include value alignment with the company's, personal attributes that may be suitable for this position, background and experiences that are relevant to company's mission. 
+
+[...]
+
+match_score
+score_breakdown: dict--skill, experience, keyword, qualifications/background, industry_relevance
+top_five_skills: dict--skill, score, comment
+strengths: list of str
+areas for improvement: dict--clarity, skills, industry
+
+Output format:
+- Match Score: X%
+- Score Breakdown:
+    + Skills Match: X%
+    + Experience Alignment: X%
+    + Keyword Matching: X%
+    + Resume Clarity & Structure: X%
+    + Industry Relevance: X%
+- Strengths: (list key strengths)
+- Areas for Improvement:
+    1. Wording Improvement: (suggest better wording for clarity, impact, and conciseness)
+    2. Missing Skills/Qualifications: (list key missing skills or qualifications based on the job description)
+    3. Industry-Relevant Enhancements: (suggest additional skills or experiences that would set the resume apart based on industry trends)
