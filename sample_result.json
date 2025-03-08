@@ -1,0 +1,73 @@
+{
+    "general_feedback": "Your resume showcases a robust educational background and a solid foundation in computer science and software development, with hands-on experience in tech roles. However, it could benefit from being tailored to emphasize your management and leadership skills more clearly, which are crucial for the Software Development Manager position you are targeting.",
+    "score_breakdown": {
+        "overall_match": 60,
+        "skills_match": 75,
+        "experience_alignment": 50,
+        "keywords_match": 65,
+        "industry_relevance": 50
+    },
+    "top_5_skills": [
+        {
+            "skill": "Engineering Team Management",
+            "score": 2,
+            "comment": "Your resume mentions multiple project involvements but lacks examples of team management which is crucial for the role."
+        },
+        {
+            "skill": "Full Software Development Lifecycle",
+            "score": 4,
+            "comment": "You have detailed experience in software development but could strengthen this by detailing leadership in these projects."
+        },
+        {
+            "skill": "Technical Hiring",
+            "score": 2,
+            "comment": "There is no mention of your involvement in recruitment or hiring, which is an important aspect of the managerial role."
+        },
+        {
+            "skill": "Stakeholder Communication",
+            "score": 3,
+            "comment": "While you discuss project management and software development, clearer examples of direct stakeholder engagement are necessary."
+        },
+        {
+            "skill": "Automated Infrastructure Deployment",
+            "score": 4,
+            "comment": "Your technical skills and projects show good alignment with automation tools and infrastructure, though leadership examples are missing."
+        }
+    ],
+    "fit": {
+        "strengths": ["Technical proficiency in software development tools", "Project experience with data processing and analytics", "Ability to innovate and embrace new technologies"],
+        "fit_evaluation": "Your technical expertise aligns well with AWS's innovative drive and product focus, but your resume should better reflect team leadership and management prowess to fully match the company's values and needs in a managerial role."
+    },
+    "resume_content": [
+        {
+            "weak_bullet_point": "Communicate with managers to set up campus computers used on campus",
+            "suggestion": {"Word Choice": "How can this line be more action-oriented and showcase leadership or impact?"},
+            "revised_example": "Led collaboration with university department heads to optimize the setup and distribution of campus computers"
+        },
+        {
+            "weak_bullet_point": "Maintain upkeep of computers, classroom equipment, and 200 printers across campus",
+            "suggestion": {"Impact": "How can you quantify the impact or efficiency improvements of your maintenance work?"},
+            "revised_example": "Managed the maintenance of critical campus IT infrastructure, achieving [placeholder]% decrease in equipment downtime"
+        }
+    ],
+    "resume_formatting": [
+        {
+            "source_name": "Forbes",
+            "hyperlink": "https://www.forbes.com/sites/forbeshumanresourcescouncil/2017/11/20/seven-tips-for-improving-your-resume/"
+        },
+        {
+            "source_name": "Harvard Business Review",
+            "hyperlink": "https://hbr.org/2014/12/how-to-write-a-resume-that-stands-out"
+        }
+    ],
+    "missing_qualifications": [
+        "3+ years of engineering team management experience",
+        "Proven experience in technical hiring and team growth",
+        "Direct communication with senior leadership and stakeholders"
+    ],
+    "profile_enhancements": [
+        "Consider obtaining a certification in software development management or agile methodologies to demonstrate leadership capabilities.",
+        "Engage in networking or leadership workshops to develop interpersonal and management skills applicable in a fast-paced environment.",
+        "Increase visibility of leadership roles in projects or current job responsibilities on the resume."
+    ]
+}
