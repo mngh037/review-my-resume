@@ -1,35 +1,28 @@
-Review the following resume and job description.
-Provide a percentage match score and a breakdown of how the match score is calculated based on:
-    - Skills Match (X%)
-    - Experience Alignment (X%)
-    - Keyword Matching (X%)
-    - Clarity & Structure (X%)
-    - Industry Relevance (X%)
+Review my resume and job description of the role I am applying for. I want to know how well my skills, experience, and background matches with this position and the company. To do that, perform the 8 tasks as numbered below and generate one json output that combines the answer for all 8 tasks. There should be one key for each task. The 8 keys should be "general_feedback", "score_breakdown", "top_5_skills", "resume_content", "resume_formatting", "missing_qualifications", and "profile_enhancements".
 
-Provide top key strengths that are relevant to the role in the job description and could be expanded on in a cover letter.
+# General feedback
+1. Provide a general feedback of my resume quality. Be encouraging but constructive without going into the details. Provide the answer as the string value to the key "general_feedback" in json format.
 
-Summarize the five most important skills as indicated in the job description provided. Score the skills as presented on the resume on a scale out of 5, with 1 being no such skill possessed, 5 being skill is sufficiently and well-presented in the resume. Provide a short constructive feedback or comment. Present the answer in json format with keys being "skill", "score", and "comment".
+# Resume and JD Match
 
-Summarize some key strengths shown in the resume that are relevant to the role and sought after by the company that posted this job description. Strengths may include value alignment with the company's, personal attributes that may be suitable for this position, background and experiences that are relevant to company's mission. 
+2. Provide a percentage match score and a breakdown of how the match score is calculated based on Skills Match, Experience Alignment, Keywords Match, and Industry Relevance. Provide the answer in a json format with the key "score_breakdown", the value is a dictionary with the following keys: "overall_match", "skills_match", "experience_alignment", "keywords_match", and "industry_relevance". Each keys of the dictionary should have a value that is the relevant match score number.
 
-[...]
+3. Summarize the five most important skills as indicated in the job description provided. Score the skills as presented on the resume on a scale out of 5, with 1 being no such skill possessed, 5 being skill is sufficiently and well-presented in the resume. Provide a short constructive feedback or comment. Present the answer in json format with the key "top_5_skills". The value is a list of dictionaries with keys "skill", "score", and "comment".
 
-match_score
-score_breakdown: dict--skill, experience, keyword, qualifications/background, industry_relevance
-top_five_skills: dict--skill, score, comment
-strengths: list of str
-areas for improvement: dict--clarity, skills, industry
+4. Do a web search of the company that posted this job description and evaluate if my attributes and experiences shown in the resume align with the company's values, missions. Evaluate "fit" factor and be as specific as you can. Provide an answer in json format with the key "fit", the value is a dictionary with the following key-value pairs: "strengths" key with value being a list of strengths, attributes, and background or experiences that make me a good fit for the role in details, and "fit_evaluation" key with value being a string that evaluates my fit with the company's value and culture.
 
-Output format:
-- Match Score: X%
-- Score Breakdown:
-    + Skills Match: X%
-    + Experience Alignment: X%
-    + Keyword Matching: X%
-    + Resume Clarity & Structure: X%
-    + Industry Relevance: X%
-- Strengths: (list key strengths)
-- Areas for Improvement:
-    1. Wording Improvement: (suggest better wording for clarity, impact, and conciseness)
-    2. Missing Skills/Qualifications: (list key missing skills or qualifications based on the job description)
-    3. Industry-Relevant Enhancements: (suggest additional skills or experiences that would set the resume apart based on industry trends)
+# Areas for Improvement
+
+## Resume
+
+5. Identify some weak bullet points in my resume and apply suggestions for improvement (word choice, clarity, impact, and conciseness, etc.) for them. In the suggested revised version, do not include specific numbers for measures; instead, replace the numbers with 'X'. Provide only the content of each bullet points (not the numbering or the bullet symbols) in your answer. Provide an answer in json format with the key "resume_content". The value is a list of dictionaries with the following keys: "weak_bullet_point", "suggestion", "revised_example". Value of "suggestion" is a dictionary, with each key being the specific suggestion idea for improvement (capitalize the first letter), and the value being specific questions expanding on that suggestion.
+
+6. Provide 2 reference links to recent, credible good resume templates for the relevant job title or industry. Provide an answer in json format with the key "resume_formatting". The value is a list of dictionaries with the keys "source_name" and "hyperlink".
+
+## Missing skills/qualifications
+
+7. Identify any missing skills and qualifications stated in the job description that are not present in the resume. Provide an answer in json format with the key "missing_qualifications" and a list of missing skills and qualifications as the value.
+
+## Industry-revelant enhancement
+
+8. Suggest additional skills, tools, or experiences that would enhance the candidate's profile and set them apart based on industry trends and job title. Be as specific as you can. Provide an answer in json format with the key "profile_enhancements" and a list of suggestions as the value.
