@@ -1,15 +1,14 @@
-from pluggy import Result
 import streamlit as st
-import openai
 import os
 from openai import OpenAI
 import pdfplumber
 import docx2txt
-import matplotlib.pyplot as plt
-import numpy as np
 from dotenv import load_dotenv
 from annotated_text import annotated_text
 import json
+import altair as alt
+import polars as pl
+import plotly.graph_objects as go
 
 load_dotenv()
 MODEL = "gpt-4o"
@@ -50,56 +49,113 @@ def review_resume(resume, job_description):
     )
 
     result = json.loads(str(response.choices[0].message.content))
-    
     return result
 
-st.title("📄 Resume Match")
-st.write("Upload your resume and job description PDF to check the match score and get suggestions!")
+# Initialize session state
+if ("resume_text" and "jd_text") not in st.session_state:
+    st.cache_data.clear()
+    st.session_state.resume_text = ""
+    st.session_state.jd_text = ""
+    st.session_state.uploaded = False
 
-uploaded_resume = st.file_uploader("Upload Resume (PDF)", type=["pdf", "docx"])
-resume_text = ""
-if uploaded_resume is not None:
-    if uploaded_resume.name.endswith(".pdf"):
-        resume_text = extract_text_from_pdf(uploaded_resume)
-    elif uploaded_resume.name.endswith(".docx"):
-        resume_text = extract_text_from_docx(uploaded_resume)
-    st.success("Resume uploaded and processed!")
-else:
-    resume_text = st.text_area("Or paste your Resume:")
+with st.sidebar:
+    st.title("Upload your files")
 
-uploaded_jd = st.file_uploader("Upload Job Description (PDF)", type=["pdf"])
-job_desc_text = ""
-if uploaded_jd is not None:
-    if uploaded_jd.name.endswith(".pdf"):
-        jd_text = extract_text_from_pdf(uploaded_jd)
-    elif uploaded_jd.name.endswith(".docx"):
-        jd_text = extract_text_from_docx(uploaded_jd)
-    st.success("Job description uploaded and processed!")
-else:
-    jd_text = st.text_area("Or paste Job Description:")
+    uploaded_resume = st.file_uploader("Upload resume", type=["pdf", "docx"], help="Your file or information will not be shared with anyone.", label_visibility="visible")
 
-if st.button("Check Match"): 
-    if resume_text and jd_text:
-        # result = review_resume(resume_text, jd_text)
-        with open("./sample_result.json", "r") as f:
-            result = json.load(f)
+    resume_text = ""
+    if uploaded_resume is not None:
+        if uploaded_resume.name.endswith(".pdf"):
+            resume_text = extract_text_from_pdf(uploaded_resume)
+        elif uploaded_resume.name.endswith(".docx"):
+            resume_text = extract_text_from_docx(uploaded_resume)
 
-        st.subheader("General Feedback", divider="grey")
+    uploaded_jd = st.file_uploader("Upload job description", type=["pdf", "docx"])
+
+    job_desc_text = ""
+    if uploaded_jd is not None:
+        if uploaded_jd.name.endswith(".pdf"):
+            jd_text = extract_text_from_pdf(uploaded_jd)
+        elif uploaded_jd.name.endswith(".docx"):
+            jd_text = extract_text_from_docx(uploaded_jd)
+        # st.success("Job description uploaded and processed!")
+    else:
+        jd_text = st.text_area("Or paste Job Description:")
+
+    if st.button("Review"):
+        if not (resume_text and jd_text):
+            st.warning("Please provide both resume and job description!")
+        else:
+            st.session_state.uploaded = True
+
+st.title("📄 Review My Resume")
+if not st.session_state.uploaded:
+    st.write("Intro and some responsible AI stuff goes here.")
+
+if st.session_state.uploaded:
+    with open("./sample_result.json", "r") as f:
+        result = json.load(f)
+    # result = review_resume(resume_text, jd_text)
+
+    overall_score = result["overall_match"]
+    def color(score):
+        if score >= 85:
+            return "#afa"
+        if 70 <= score < 85:
+            return "#fea"
+        return "#faa"
+    
+    annotated_text("Your resume overall match score against this JD is ", (f"{overall_score}/100", "", color(overall_score)),)
+
+    tab1, tab2, tab3, tab4 = st.tabs(["Overview", "Key Skills Assessment", "Fit Evaluation", "Areas for Improvement"])
+
+    with tab1:
         st.write(result["general_feedback"])
+        # st.bar_chart(result["score_breakdown"], x="category", y="score", horizontal=True)
 
-        st.subheader("Score Breakdown", divider="grey")
-        st.write(result["score_breakdown"])
+        data = pl.DataFrame(result["score_breakdown"])
+        c = (alt.Chart(data).mark_bar().encode(
+            y=alt.Y('category:N', axis=alt.Axis(labelLimit=300), title=''),
+            x=alt.X('score:Q', axis=alt.Axis(values=list(range(0, 120, 10))), scale=alt.Scale(domain=[0, 100]))
+        ).properties(
+            width=800,
+            height=300
+        ))
+        st.altair_chart(c)
 
-        st.subheader("Top 5 Skills", divider="grey")
-        st.write(result["top_5_skills"])
+    with tab2:
+        skill = []
+        score = []
+        for item in result["top_5_skills"]:
+            skill.append(item["skill"])
+            score.append(item["score"])
 
-        st.subheader("'Fit' Evaluation", divider="grey")
+        fig = go.Figure(data=go.Scatterpolar(
+            r=score,
+            theta=skill,
+            fill='toself',
+            line_width=0,
+            name=""
+            )
+        )
+        fig.update_layout(
+            polar=dict(
+                radialaxis=dict(
+                    visible=True,
+                    range=[ 0,5 ]
+                )
+            )
+        )
+        st.plotly_chart(fig)
+        
+
+    with tab3:
         st.write(result["fit"]["fit_evaluation"])
         st.write(f"Strengths:")
         for i, strength in enumerate(result["fit"]["strengths"]):
             st.write(f"{i+1}. {strength}")
 
-        st.subheader("Areas for Improvement", divider="grey")
+    with tab4:
         st.write("Blah blah")
 
         st.subheader("Resume")
@@ -117,6 +173,3 @@ if st.button("Check Match"):
         st.subheader("Industry Enhancements")
         for item in result["profile_enhancements"]:
             st.write(f":key: {item}")
-
-    else:
-        st.warning("Please provide both resume and job description!")
