@@ -43,13 +43,21 @@ def review_resume(resume, job_description):
     
     response = client.chat.completions.create(
         model=MODEL,
-        messages=[{"role": "system", "content": "You are an expert career coach assessing how well a resume matches with the job description and company that is hiring."},
+        messages=[{"role": "system", "content": "You are an expert career coach assessing how well a job searcher's resume matches with the job description and company that is hiring."},
                   {"role": "user", "content": prompt}],
         response_format={"type": "json_object"}
     )
 
     result = json.loads(str(response.choices[0].message.content))
     return result
+
+# Set page config for streamlit UI
+st.set_page_config(
+    page_title="Resume Review",
+    page_icon=":memo:",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # Initialize session state
 if ("resume_text" and "jd_text") not in st.session_state:
@@ -88,14 +96,14 @@ with st.sidebar:
         else:
             st.session_state.uploaded = True
 
-st.title("📄 Review My Resume")
+st.title(":memo: Review My Resume")
 if not st.session_state.uploaded:
     st.write("Intro and some responsible AI stuff goes here.")
 
 if st.session_state.uploaded:
-    with open("./sample_result.json", "r") as f:
-        result = json.load(f)
-    # result = review_resume(resume_text, jd_text)
+    # with open("./sample_result.json", "r") as f:
+    #     result = json.load(f)
+    result = review_resume(resume_text, jd_text)
 
     overall_score = result["overall_match"]
     def color(score):
@@ -111,7 +119,6 @@ if st.session_state.uploaded:
 
     with tab1:
         st.write(result["general_feedback"])
-        # st.bar_chart(result["score_breakdown"], x="category", y="score", horizontal=True)
 
         data = pl.DataFrame(result["score_breakdown"])
         c = (alt.Chart(data).mark_bar().encode(
@@ -126,9 +133,11 @@ if st.session_state.uploaded:
     with tab2:
         skill = []
         score = []
+        comment = []
         for item in result["top_5_skills"]:
             skill.append(item["skill"])
             score.append(item["score"])
+            comment.append(item["comment"])
 
         fig = go.Figure(data=go.Scatterpolar(
             r=score,
@@ -146,8 +155,11 @@ if st.session_state.uploaded:
                 )
             )
         )
-        st.plotly_chart(fig)
-        
+
+        col1, col2 = st.columns([2, 2])
+        col1.plotly_chart(fig)
+        for i in range(5):
+            col2.write(f"**{skill[i]}**: {comment[i]}")
 
     with tab3:
         st.write(result["fit"]["fit_evaluation"])
@@ -156,8 +168,6 @@ if st.session_state.uploaded:
             st.write(f"{i+1}. {strength}")
 
     with tab4:
-        st.write("Blah blah")
-
         st.subheader("Resume")
         st.write("Some weak bullet points you can improve on.")
         for i, d in enumerate(result["resume_content"]):
@@ -171,5 +181,7 @@ if st.session_state.uploaded:
             st.write(f":x: {item}")
 
         st.subheader("Industry Enhancements")
-        for item in result["profile_enhancements"]:
+        st.write(result["profile_enhancements"]["industry_trend"])
+        st.write(result["profile_enhancements"]["career_advice"])
+        for item in result["profile_enhancements"]["action_steps"]:
             st.write(f":key: {item}")
