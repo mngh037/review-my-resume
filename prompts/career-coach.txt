@@ -21,7 +21,7 @@ Review my resume and job description of the role I am applying for. I want to kn
 
 ## Missing skills/qualifications
 
-7. Identify any missing skills and qualifications stated in the job description that I do not have. Specify if the missing skills are required or preferred/nice-to-have. Provide an answer in json format with the key "missing_qualifications" and your answer as the value (list type). 
+7. Identify any missing skills and qualifications stated in the job description that I do not have. Specify if the missing skills are required or preferred/nice-to-have. Provide an answer in json format with the key "missing_qualifications" and your answer as the value (list of strings). 
 
 ## Industry-revelant enhancement
 
