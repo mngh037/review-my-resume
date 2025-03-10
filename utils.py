@@ -16,7 +16,7 @@ TEMPERATURE = 1.0
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 # Load the prompt prepared for resume review
-with open("./prompt.txt", "r") as f:
+with open("./prompts/career-coach.txt", "r") as f:
     template = f.read()
 
 # Extract text from user's uploaded file

@@ -88,7 +88,7 @@ if not st.session_state.uploaded:
 # Change the main block content to analysis
 if st.session_state.uploaded:
     # For testing against sample results
-    # with open("./sample_result.json", "r") as f:
+    # with open("./sample_data/sample-result.json", "r") as f:
     #     result = json.load(f)
     with st.spinner("Analyzing in progress..."):
         time.sleep(10)
