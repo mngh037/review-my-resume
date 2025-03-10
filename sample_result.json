@@ -1,73 +1,99 @@
 {
-    "general_feedback": "Your resume showcases a robust educational background and a solid foundation in computer science and software development, with hands-on experience in tech roles. However, it could benefit from being tailored to emphasize your management and leadership skills more clearly, which are crucial for the Software Development Manager position you are targeting.",
-    "score_breakdown": {
-        "overall_match": 60,
-        "skills_match": 75,
-        "experience_alignment": 50,
-        "keywords_match": 65,
-        "industry_relevance": 50
-    },
+    "general_feedback": "Your resume demonstrates a solid foundation in computer science and practical software development experience, which aligns with key job requirements. However, the managerial and leadership experience for engineering teams, as highlighted in the job description, seems limited. Additionally, while your technical skills are well-documented, emphasizing leadership ability and contributions to significant projects could enhance your chances. Consider tailoring your resume to reflect strategic leadership roles if applicable.",
+    "overall_match": 65,
+    "score_breakdown": [
+      {
+        "category": "Skills Match",
+        "score": 70
+      },
+      {
+        "category": "Experience Alignment",
+        "score": 60
+      },
+      {
+        "category": "Keywords Match",
+        "score": 65
+      },
+      {
+        "category": "Qualifications Match",
+        "score": 65
+      }
+    ],
     "top_5_skills": [
-        {
-            "skill": "Engineering Team Management",
-            "score": 2,
-            "comment": "Your resume mentions multiple project involvements but lacks examples of team management which is crucial for the role."
-        },
-        {
-            "skill": "Full Software Development Lifecycle",
-            "score": 4,
-            "comment": "You have detailed experience in software development but could strengthen this by detailing leadership in these projects."
-        },
-        {
-            "skill": "Technical Hiring",
-            "score": 2,
-            "comment": "There is no mention of your involvement in recruitment or hiring, which is an important aspect of the managerial role."
-        },
-        {
-            "skill": "Stakeholder Communication",
-            "score": 3,
-            "comment": "While you discuss project management and software development, clearer examples of direct stakeholder engagement are necessary."
-        },
-        {
-            "skill": "Automated Infrastructure Deployment",
-            "score": 4,
-            "comment": "Your technical skills and projects show good alignment with automation tools and infrastructure, though leadership examples are missing."
-        }
+      {
+        "skill": "Software Development Lifecycle",
+        "score": 3,
+        "comment": "Your resume shows experience in software development but lacks specific mention of complete lifecycle oversight."
+      },
+      {
+        "skill": "Team Leadership",
+        "score": 2,
+        "comment": "Little to no leadership experience is highlighted in your resume, key for a manager role."
+      },
+      {
+        "skill": "Technical Proficiency",
+        "score": 4,
+        "comment": "Your advanced technical skills in various languages and frameworks are evident and well-presented."
+      },
+      {
+        "skill": "Communication",
+        "score": 3,
+        "comment": "While you describe communication with teams, more evidence of influencing stakeholders and leading discussions would be beneficial."
+      },
+      {
+        "skill": "Problem Solving",
+        "score": 4,
+        "comment": "Your involvement in research and troubleshooting highlights strong problem-solving skills."
+      }
     ],
     "fit": {
-        "strengths": ["Technical proficiency in software development tools", "Project experience with data processing and analytics", "Ability to innovate and embrace new technologies"],
-        "fit_evaluation": "Your technical expertise aligns well with AWS's innovative drive and product focus, but your resume should better reflect team leadership and management prowess to fully match the company's values and needs in a managerial role."
+      "strengths": [
+        "Strong technical background and experience with software development.",
+        "Demonstrated ability to handle complex technical challenges.",
+        "Experience in research and presenting at conferences suggests good communication skills."
+      ],
+      "fit_evaluation": "Your background aligns with AWS's values of innovation and technical excellence. However, the lack of leadership experience may challenge the fit for a manager role which emphasizes coaching and team management. Your potential to contribute technical insights aligns with their culture of curiosity and continuous improvement."
     },
     "resume_content": [
-        {
-            "weak_bullet_point": "Communicate with managers to set up campus computers used on campus",
-            "suggestion": {"Word Choice": "How can this line be more action-oriented and showcase leadership or impact?"},
-            "revised_example": "Led collaboration with university department heads to optimize the setup and distribution of campus computers"
+      {
+        "weak_bullet_point": "Communicate with managers to set up campus computers used on campus.",
+        "suggestion": {
+          "Enhance Clarity": "What specific communication techniques or tools are used?",
+          "Increase Impact": "What outcomes did this setup process achieve?"
         },
-        {
-            "weak_bullet_point": "Maintain upkeep of computers, classroom equipment, and 200 printers across campus",
-            "suggestion": {"Impact": "How can you quantify the impact or efficiency improvements of your maintenance work?"},
-            "revised_example": "Managed the maintenance of critical campus IT infrastructure, achieving [placeholder]% decrease in equipment downtime"
-        }
+        "revised_example": "Coordinated with management to successfully install and configure campus-wide computer systems, enhancing user accessibility and resource efficiency."
+      },
+      {
+        "weak_bullet_point": "Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data.",
+        "suggestion": {
+          "Provide Detail": "What specific features or functionalities were developed?",
+          "Highlight Results": "What impact did this application have?"
+        },
+        "revised_example": "Engineered a full-stack web application integrating Flask, React, PostgreSQL, and Docker, leading to enhanced data analysis capabilities for GitHub collaboration visualization."
+      }
     ],
     "resume_formatting": [
-        {
-            "source_name": "Forbes",
-            "hyperlink": "https://www.forbes.com/sites/forbeshumanresourcescouncil/2017/11/20/seven-tips-for-improving-your-resume/"
-        },
-        {
-            "source_name": "Harvard Business Review",
-            "hyperlink": "https://hbr.org/2014/12/how-to-write-a-resume-that-stands-out"
-        }
+      {
+        "source_name": "Resume Genius",
+        "hyperlink": "https://resumegenius.com/resume-templates/technology"
+      },
+      {
+        "source_name": "Canva",
+        "hyperlink": "https://www.canva.com/resumes/templates/software-engineer/"
+      }
     ],
     "missing_qualifications": [
-        "3+ years of engineering team management experience",
-        "Proven experience in technical hiring and team growth",
-        "Direct communication with senior leadership and stakeholders"
+      "3+ years of engineering team management experience",
+      "Experience managing complex, scalable software systems",
+      "Experience with complete software/hardware/networks development lifecycle"
     ],
-    "profile_enhancements": [
-        "Consider obtaining a certification in software development management or agile methodologies to demonstrate leadership capabilities.",
-        "Engage in networking or leadership workshops to develop interpersonal and management skills applicable in a fast-paced environment.",
-        "Increase visibility of leadership roles in projects or current job responsibilities on the resume."
-    ]
-}
+    "profile_enhancements": {
+      "industry_trend": "As the software industry evolves, there's a major shift towards cloud platforms and services, with an emphasis on agile development for quicker, scalable deployment.",
+      "career_advice": "Consider gaining experience in cloud-based environments and emphasize leadership roles or initiatives to demonstrate your readiness for managerial positions.",
+      "action_steps": [
+        "Enroll in leadership development courses.",
+        "Seek out opportunities to lead projects at your current or a new job.",
+        "Gain experience with AWS or similar cloud services by obtaining certifications."
+      ]
+    }
+  }
