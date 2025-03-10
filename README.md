@@ -9,8 +9,10 @@ This tool is built driven by my own desire for a tool that could quickly scan ho
 ## Final work Preview
 
 ![Landing Page](./demo/landing-page.gif)
+**Landing page
 
 ![Resume/JD Match Result](./demo/result.gif)
+**Result mainscreens
 
 ## How to use the tool
 
