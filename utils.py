@@ -99,8 +99,8 @@ def color(score):
     """
     Return color code in alignment with overall match score.
     """
-    if score >= 85:
+    if score >= 80:
         return "#afa"
-    if 70 <= score < 85:
+    if 75 <= score < 80:
         return "#fea"
     return "#faa"
