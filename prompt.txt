@@ -1,13 +1,13 @@
-Review my resume and job description of the role I am applying for. I want to know how well my skills, experience, and background matches with this position and the company. To do that, perform the 8 tasks as numbered below and generate one json output that combines the answer for all 8 tasks. There should be one key for each task. The 8 keys should be "general_feedback", "score_breakdown", "top_5_skills", "resume_content", "resume_formatting", "missing_qualifications", and "profile_enhancements".
+Review my resume and job description of the role I am applying for. I want to know how well my skills, experience, and background matches with this position and the company. To do that, perform the 8 tasks as numbered below and generate one json output that combines the answer for all 8 tasks. Except for task 2, there should be one key for each task. The 8 keys should be "general_feedback", "overall_match", "score_breakdown", "top_5_skills", "resume_content", "resume_formatting", "missing_qualifications", and "profile_enhancements".
 
 # General feedback
-1. Provide a general feedback of my resume quality. Be encouraging but constructive without going into the details. Provide the answer as the string value to the key "general_feedback" in json format.
+1. Provide a general professional feedback of the quality of my resume and and how well I'm meeting the qualifications. Be encouraging but constructive pointing out the resume's weaknesses without going into the details (you'll dive into these in the next tasks). Evaluate improvements to my profile or my resume that I might want to consider when applying to this position. Provide the answer as the string value to the key "general_feedback" in json format.
 
 # Resume and JD Match
 
-2. Provide a percentage match score and a breakdown of how the match score is calculated based on Skills Match, Experience Alignment, Keywords Match, and Industry Relevance. Provide the answer in a json format with the key "score_breakdown", the value is a dictionary with the following keys: "overall_match", "skills_match", "experience_alignment", "keywords_match", and "industry_relevance". Each keys of the dictionary should have a value that is the relevant match score number.
+2. Provide a percentage match score and a breakdown of how the match score is calculated based on Skills Match, Experience Alignment, Keywords Match, and Qualifications Match. Provide the answer in a json format. Value of the scores should be an integer. The first key is "overall_match" whose value is the overall match score number. The second key is "score_breakdown", whose value is a list of dictionaries with two keys, "category", and "score".
 
-3. Summarize the five most important skills as indicated in the job description provided. Score the skills as presented on the resume on a scale out of 5, with 1 being no such skill possessed, 5 being skill is sufficiently and well-presented in the resume. Provide a short constructive feedback or comment. Present the answer in json format with the key "top_5_skills". The value is a list of dictionaries with keys "skill", "score", and "comment".
+3. Summarize the five most important skills based on this job description. Score my skills as presented on the resume on a scale out of 5, with 1 being no such skill possessed, 5 being skill is sufficiently and well-presented in the resume. Provide a short constructive feedback or comment. Present the answer in json format with the key being "top_5_skills" and value being a list of dictionaries whose keys are "skill", "score", and "comment".
 
 4. Do a web search of the company that posted this job description and evaluate if my attributes and experiences shown in the resume align with the company's values, missions. Evaluate "fit" factor and be as specific as you can. Provide an answer in json format with the key "fit", the value is a dictionary with the following key-value pairs: "strengths" key with value being a list of strengths, attributes, and background or experiences that make me a good fit for the role in details, and "fit_evaluation" key with value being a string that evaluates my fit with the company's value and culture.
 
@@ -21,8 +21,11 @@ Review my resume and job description of the role I am applying for. I want to kn
 
 ## Missing skills/qualifications
 
-7. Identify any missing skills and qualifications stated in the job description that are not present in the resume. Provide an answer in json format with the key "missing_qualifications" and a list of missing skills and qualifications as the value.
+7. Identify any missing skills and qualifications stated in the job description that I do not have. Specify if the missing skills are required or preferred/nice-to-have. Provide an answer in json format with the key "missing_qualifications" and your answer as the value (list type). 
 
 ## Industry-revelant enhancement
 
-8. Suggest additional skills, tools, or experiences that would enhance the candidate's profile and set them apart based on industry trends and job title. Be as specific as you can. Provide an answer in json format with the key "profile_enhancements" and a list of suggestions as the value.
+8. Do a web search of trends for this industry and job title and give me some career advices. Provide the answer in a short paragraphs (3-4 sentences). Suggest action steps to gain additional skills, tools, or experiences that would enhance the my profile and set me apart. Be as specific as you can. Provide an answer in json format with the key "profile_enhancements" whole value is a dictionary where:
+- key: "industry_trend", value: (string) a paragraph of 3-4 sentences outlining industry trends
+- key: "career_advice", value: (string) a paragraph of 3-4 sentences outlining career advice that would set me apart
+- key: "action_steps", value: (list)
