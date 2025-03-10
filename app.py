@@ -61,7 +61,8 @@ with st.sidebar:
             jd_text = extract_text(docx_file=uploaded_jd)
         # st.success("Job description uploaded and processed!")
     else:
-        jd_text = st.text_area("Or paste Job Description:", placeholder="Job description")
+        jd_text = st.text_area("Or paste Job Description:",
+                               placeholder="Job description")
 
     if st.button("Review my resume"):
         if not (resume_text and jd_text):
@@ -96,16 +97,22 @@ if st.session_state.uploaded:
 
     # Overall match score
     overall_score = result["overall_match"]    
-    annotated_text("Your resume overall match score against this JD is ", (f"{overall_score}/100", "", color(overall_score)),)
+    annotated_text("Your resume overall match score against this JD is ",
+                   (f"{overall_score}/100", "", color(overall_score)),)
     
     # Analysis tabs
-    tab1, tab2, tab3, tab4 = st.tabs(["Overview", "Key Skills Assessment", "Fit Evaluation", "Areas for Improvement"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Overview",
+                                      "Key Skills Assessment",
+                                      "Fit Evaluation",
+                                      "Areas for Improvement"])
 
     with tab1:
         data = pl.DataFrame(result["score_breakdown"])
         scores_chart = (alt.Chart(data).mark_bar().encode(
             y=alt.Y('category:N', axis=alt.Axis(labelLimit=300), title=''),
-            x=alt.X('score:Q', axis=alt.Axis(values=list(range(0, 120, 10))), scale=alt.Scale(domain=[0, 100]))
+            x=alt.X('score:Q',
+                    axis=alt.Axis(values=list(range(0, 120, 10))),
+                    scale=alt.Scale(domain=[0, 100]))
         ).properties(
             width=800,
             height=300
